@@ -7,6 +7,7 @@ $email = $pass ="";
 $email_err = $pass_err = "";
 $res_err="";
 $type_of_alert="";
+$mode="";
 // Processing form data when form is submitted
 if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) || !empty($_POST["pass"])){
 
@@ -55,6 +56,12 @@ if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) 
 
                     if(($email==$input_email)&&($pass==$input_pass)){
                         $res_err =  "Logged In.";
+                        $mode = $row["account_type"];
+
+                        if ($mode=="recruiter"){
+                            header("Location:all_users.php");
+                            exit();
+                        }
                     }
                     else {
                         $res_err =  "Email or Password is invalid";
