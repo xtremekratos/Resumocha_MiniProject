@@ -17,6 +17,6 @@ CREATE TABLE IF NOT EXISTS users(email varchar(20) primary key references login_
                                         sex varchar(10));
 
 insert into login_data values("jehad@gmail.com","panda","recruiter");
-insert into login_data values("jehadmohamedz@gmail.com","JED","user");
+insert into login_data values("jehadz@gmail.com","JED","user");
 insert into recruiters values("jehad@gmail.com","Jehad F Luffy","DDX","Design Head");
-insert into users values("jehadmohamedz@gmail.com","Jehad Mohamed","+91 9113974687","26-12-1998","male");
+insert into users values("jehadz@gmail.com","Jehad Mohamed","+91 9113974687","1998-12-26","male");
