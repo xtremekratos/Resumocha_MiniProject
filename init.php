@@ -3,15 +3,15 @@
 require_once "config.php";
  
 // Define variables and initialize with empty values
-$email = $pass ="";
-$email_err = $pass_err = "";
+$email= $pass="";
+$email_err= $pass_err= "";
 $res_err="";
 $type_of_alert="";
+
 // Processing form data when form is submitted
 if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) || !empty($_POST["pass"])){
 
-    
-    // Validate name
+    // Validate email
     $input_email = trim($_POST["email"]);
     if(empty($input_email)){
         $email_err = "Please enter a email.";
@@ -21,26 +21,23 @@ if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) 
         $email = $input_email;
     }
     
-    // Validate pass pass
+    // Validate pass 
     $input_pass = trim($_POST["pass"]);
     if(empty($input_pass)){
-        $pass_err = "Please enter an pass.";     
+        $name_err = "Please enter an pass.";     
     } else{
         $pass = $input_pass;
     }
-    
+
     // Check input errors before inserting in database
-    if(empty($email_err) && empty($pass_err)){
+    if(empty($email_err) && empty($pass_err)) {
 
         $sql = "select * from login_data WHERE email=?";
  
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bind_param("s", $_POST['email']);
-            
-            // Set parameters
-            $param_name = $email;
-            
+                  
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 $result = $stmt->get_result();
@@ -81,15 +78,17 @@ if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Resumocha</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<style type="text/css">
         .wrapper{
             width: 500px;
             margin: 0 auto;
         }
     </style>
-</head>
 <body>
     <div class="wrapper">
         <div class="container-fluid">
@@ -110,8 +109,32 @@ if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) 
                             <input type="password" name="pass" class="form-control" value="">
                             <span class="help-block"><?php echo $pass_err;?></span>
                         </div>
-                        <input type="submit" class="btn btn-primary" value="Login">
-                        <a href="index.php" class="btn btn-success">Register</a>
+                        <!-- <a href="index.html" class="btn btn-success" >Register</a> -->
+                        <div class="container">
+                            <input type="submit" class="btn btn-primary" value="Login">
+                            <!-- Trigger the modal with a button -->
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Register</button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Register as</h4>
+                                    </div>
+                                    <div class="modal-body" align="center" >
+                                    <button onclick="location.href='RecruiterSignup.php'" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Recruiter</button>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">User</button>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                     
                         <div class="form-group <?php echo (!empty($res_err)) ? 'has-error' : ''; ?>">
                         <br>
                         <?php if($res_err=="Logged In."){
@@ -133,5 +156,8 @@ if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) 
             </div>        
         </div>
     </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
