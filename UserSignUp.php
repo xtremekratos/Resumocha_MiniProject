@@ -64,12 +64,12 @@ if(isset($_POST["optradio"])&&isset($_POST["email"])&&(isset($_POST["pass"]))&&(
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bind_param("sss", $_POST['email'],$_POST['pass'],$user);
-            $user = "user";
+            $user = "git push o";
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt2 = $mysqli->prepare($sql2)){
                     // Bind variables to the prepared statement as parameters
-                    $stmt2->bind_param("sssss", $_POST['email'],$_POST['name'],$_POST['phone'],$_POST['dob'],$_POST['sex']);
+                    $stmt2->bind_param("sssss", $_POST['email'],$_POST['name'],$_POST['phone'],$_POST['dob'],$_POST['optradio']);
                     // Attempt to execute the prepared statement
                     if($stmt2->execute()){
                         header("Location:init.php");
