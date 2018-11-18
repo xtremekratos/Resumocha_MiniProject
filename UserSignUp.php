@@ -60,20 +60,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($email_err) && empty($pass_err) && empty($name_err) && empty($dob_err) && empty($phone_err)){
 
-        $sql = "INSERT into login_data values(?,?,?)";
-        $sql2 = "INSERT into users values(?,?,?,?,?)";
+        $sql = "INSERT into login_data (email, pass, account_type) values(?,?,?)";
+
+        $sql2 = "INSERT into users (email, name, phone, dob, sex) values(?,?,?,?,?)";
+
+        $user = "user";
+
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
-            $stmt->bind_param("sss", $_POST['email'],$_POST['pass'],$user);
-            $user = "git push o";
+            $stmt->bind_param("sss", $_POST['email'], $_POST['pass'], $user);
+            
+            if($stmt2 = $mysqli->prepare($sql2)){
+                $stmt2->bind_param("sssss", $_POST['email'],$_POST['name'],$_POST['phone'],$_POST['dob'],$_POST['optradio']);
+
+
             // Attempt to execute the prepared statement
             if($stmt->execute()){
-                if($stmt2 = $mysqli->prepare($sql2)){
-                    // Bind variables to the prepared statement as parameters
-                    $stmt2->bind_param("sssss", $_POST['email'],$_POST['name'],$_POST['phone'],$_POST['dob'],$_POST['optradio']);
-                    // Attempt to execute the prepared statement
                     if($stmt2->execute()){
-                        header("Location:init.php");
+                        header("location: init.php");
                         exit();
                     } else{
                         echo "Something went wrong. Please try again later.";
@@ -89,7 +93,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
          
         // Close statement
-        $stmt->close(); $stmt2->close();
+        // if($stmt->close()) 
+        //    { $stmt2->close();}
     }
     
     // Close connection
@@ -126,7 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                         <div class="form-group <?php echo (!empty($pass_err)) ? 'has-error' : ''; ?>">
                             <label>Password</label>
-                            <input type="text" name="pass" class="form-control" value="">
+                            <input type="password" name="pass" class="form-control" value="">
                             <span class="help-block"><?php echo $pass_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
