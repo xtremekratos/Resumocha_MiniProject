@@ -58,6 +58,10 @@ if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) 
                             header("Location:all_users.php");
                             exit();
                         }
+                        else{
+                            header("Location:user_info.php?email=".$email);
+                            exit();
+                        }
                     }
                     else {
                         $res_err =  "Email or Password is invalid";
@@ -131,7 +135,7 @@ if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) 
                                     </div>
                                     <div class="modal-body" align="center" >
                                     <button onclick="location.href='RecruiterSignup.php'" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Recruiter</button>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">User</button>
+                                    <button onclick="location.href='UserSignUp.php'"type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">User</button>
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
