@@ -8,7 +8,7 @@ $email_err= $pass_err= "";
 $res_err="";
 $type_of_alert="";
 $mode="";
-// Processing form data when form is submitted
+// Processing form data when form is submitted, even checks if data available in database
 if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) || !empty($_POST["pass"])){
 
     // Validate email
@@ -56,6 +56,10 @@ if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) 
 
                         if ($mode=="recruiter"){
                             header("Location:all_users.php");
+                            exit();
+                        }
+                        else{
+                            header("Location:user_info.php?email=".$email);
                             exit();
                         }
                     }
@@ -131,7 +135,7 @@ if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) 
                                     </div>
                                     <div class="modal-body" align="center" >
                                     <button onclick="location.href='RecruiterSignup.php'" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Recruiter</button>
-                                    <button onclick="location.href='UserSignUp.php'" type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">User</button>
+                                    <button onclick="location.href='UserSignUp.php'"type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">User</button>
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -9,9 +9,10 @@ $res_err="";
 $type_of_alert="";
 $mode="";
 // Processing form data when form is submitted
-if(isset($_POST["optradio"])&&isset($_POST["email"])&&(isset($_POST["pass"]))&&(isset($_POST["name"]))&&(isset($_POST["dob"]))&&(isset($_POST["phone"])) && !empty($_POST["email"]) || !empty($_POST["pass"])|| !empty($_POST["name"])|| !empty($_POST["phone"])|| !empty($_POST["dob"])){
+if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    
+//isset($_POST["optradio"])&&isset($_POST["email"])&&(isset($_POST["pass"]))&&(isset($_POST["name"]))&&(isset($_POST["dob"]))&&(isset($_POST["phone"])) && !empty($_POST["email"]) || !empty($_POST["pass"])|| !empty($_POST["name"])|| !empty($_POST["phone"])|| !empty($_POST["dob"])
+
     // Validate email
     $input_email = trim($_POST["email"]);
     if(empty($input_email)){
@@ -59,17 +60,17 @@ if(isset($_POST["optradio"])&&isset($_POST["email"])&&(isset($_POST["pass"]))&&(
     // Check input errors before inserting in database
     if(empty($email_err) && empty($pass_err) && empty($name_err) && empty($dob_err) && empty($phone_err)){
 
-        $sql = "insert into login_data values(?,?,?)";
-        $sql2 = "insert into users values(?,?,?,?,?)";
+        $sql = "INSERT into login_data values(?,?,?)";
+        $sql2 = "INSERT into users values(?,?,?,?,?)";
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bind_param("sss", $_POST['email'],$_POST['pass'],$user);
-            $user = "user";
+            $user = "git push o";
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt2 = $mysqli->prepare($sql2)){
                     // Bind variables to the prepared statement as parameters
-                    $stmt2->bind_param("sssss", $_POST['email'],$_POST['name'],$_POST['phone'],$_POST['dob'],$_POST['sex']);
+                    $stmt2->bind_param("sssss", $_POST['email'],$_POST['name'],$_POST['phone'],$_POST['dob'],$_POST['optradio']);
                     // Attempt to execute the prepared statement
                     if($stmt2->execute()){
                         header("Location:init.php");
@@ -155,7 +156,7 @@ if(isset($_POST["optradio"])&&isset($_POST["email"])&&(isset($_POST["pass"]))&&(
 <label class="radio-inline"><input type="radio" name="optradio" value="female">Female</label>
 <label class="radio-inline"><input type="radio" name="optradio" value="other">Other</label>
                         </div>
-                        <input type="submit" class="btn btn-success" value="Login">
+                        <input type="submit" class="btn btn-success" value="Sign in">
                         <a href="init.php" class="btn btn-danger">Cancel</a>
                         <div class="form-group <?php echo (!empty($res_err)) ? 'has-error' : ''; ?>">
                         <br>

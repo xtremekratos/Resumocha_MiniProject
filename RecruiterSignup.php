@@ -7,7 +7,7 @@ $position= $company= $name= $email = $pass ="";
 $position_err = $company_err = $name_err = $email_err = $pass_err = "";
 $res_err="";
 $type_of_alert="";
-// Processing form data when form is submitted
+// checks if submit button is pressed
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Validate email
@@ -152,7 +152,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             </div>
                             <!-- <a href="index.html" class="btn btn-success" >Register</a> -->
                             <!-- <div> -->
-                            <input type="submit" class="btn btn-primary" value="Submit">
+                            <input type="submit" class="btn btn-primary" value="Signin">
                             <a href="init.php" class="btn btn-default">Cancel</a>
                         </form>
                                 <!-- Trigger the modal with a button -->
