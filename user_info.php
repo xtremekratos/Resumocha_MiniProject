@@ -8,6 +8,10 @@ $sex="";
 $dob="";
 $resume ="";
 $dp = "";
+$resume_mode ="";
+$dp_mode = "";
+$img_src="";
+$resume_src="";
 if(isset($_GET["email"])){
     $email = $_GET["email"]; 
 }
@@ -32,7 +36,20 @@ if($stmt = $mysqli->prepare($sql)){
             $phone =$row["phone"];
             $sex =$row["sex"];
             $dob =$row["dob"];
-            
+            $resume =$row["resume"]."";
+            $dp =$row["dp"]."";
+            if($resume==""){
+                $resume_mode="Add Resume";
+            }
+            else{
+                $resume_mode="Update Resume";
+            }
+            if($dp==""){
+                $dp_mode="Add Profile Pic";
+            }
+            else{
+                $dp_mode="Update Profile Pic";
+            }
         }
     }
 }
@@ -73,58 +90,112 @@ if($stmt = $mysqli->prepare($sql)){
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Your Details</h2>
-                        <a href="create.php" class="btn btn-success pull-right">Add Resume</a>
-                        <a href="create.php" class="btn btn-success pull-right" style="
-    margin-right: 15px;
-">Add Profile Pic</a>
+                        <a href="create.php" class="btn btn-success pull-right"> <?php echo $resume_mode ?></a>
+                        <a href="create.php" class="btn btn-success pull-right" style="margin-right: 15px;"> <?php echo $dp_mode ?></a>
                     <?php
                     // Include config file
                     require_once "config.php";
-                    
+                    if($dp_mode=="Add Profile Pic"){
+                        $img_src="img/default.jpg";
+                    }
+                    else{
                     // Attempt select query execution
-                    $sql = "SELECT * FROM images";
-                    if($result = mysqli_query($link, $sql)){
-                        if(mysqli_num_rows($result) > 0){
-                            echo "<table class='table table-bordered table-striped'>";
-                                echo "<thead>";
-                                    echo "<tr>";
-                                        echo "<th>#</th>";
-                                        echo "<th>Name</th>";
-                                        echo "<th>Address</th>";
-                                        echo "<th>Salary</th>";
-                                        echo "<th>Action</th>";
-                                    echo "</tr>";
-                                echo "</thead>";
-                                echo "<tbody>";
-                                while($row = mysqli_fetch_array($result)){
-                                    echo "<tr>";
-                                        echo "<td>" . $row['id'] . "</td>";
-                                        echo "<td>" . $row['name'] . "</td>";
-                                        echo "<td>" . $row['address'] . "</td>";
-                                        echo "<td>" . $row['salary'] . "</td>";
-                                        echo "<td>";
-                                            echo "<a href='read.php?id=". $row['id'] ."' title='View Record' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                                            echo "<a href='update.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='delete.php?id=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-                                        echo "</td>";
-                                    echo "</tr>";
-                                }
-                                echo "</tbody>";                            
-                            echo "</table>";
-                            // Free result set
+                    $sql = "select * from images WHERE email=?";
+ 
+                    if($stmt = $mysqli->prepare($sql)){
+                        // Bind variables to the prepared statement as parameters
+                        $stmt->bind_param("s", $_GET['email']);
+                              
+                        // Attempt to execute the prepared statement
+                        if($stmt->execute()){
+                            $result = $stmt->get_result();
+                            
+                            if($result->num_rows == 1){
+                                /* Fetch result row as an associative array. Since the result set contains only one row, we don't need to use while loop */
+                                $row = $result->fetch_array(MYSQLI_ASSOC);
+                                
+                                // Retrieve individual field value
+                                $img_src = $row["image_path"];
                             mysqli_free_result($result);
                         } else{
-                            echo "<p class='lead'><em>No records were found.</em></p>";
+                            echo "<p class='lead'><em>ERROR:Multiple records were found.</em></p>";
                         }
                     } else{
                         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
                     }
- 
+                
                     // Close connection
-                    mysqli_close($link);
+                    mysqli_close($link);}}
+
+                    if($resume_mode=="Add Resume"){
+                        echo "";
+                    }
+                    else{
+                    // Attempt select query execution
+                    $sql = "select * from resumes WHERE email=?";
+ 
+                    if($stmt = $mysqli->prepare($sql)){
+                        // Bind variables to the prepared statement as parameters
+                        $stmt->bind_param("s", $_GET['email']);
+                              
+                        // Attempt to execute the prepared statement
+                        if($stmt->execute()){
+                            $result = $stmt->get_result();
+                            
+                            if($result->num_rows == 1){
+                                /* Fetch result row as an associative array. Since the result set contains only one row, we don't need to use while loop */
+                                $row = $result->fetch_array(MYSQLI_ASSOC);
+                                
+                                // Retrieve individual field value
+                                $resume_src = $row["link"];
+                            mysqli_free_result($result);
+                        } else{
+                            echo "<p class='lead'><em>ERROR:Multiple records were found.</em></p>";
+                        }
+                    } else{
+                        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+                    }
+                
+                    // Close connection
+                    mysqli_close($link);}}
                     ?>
+                
                 </div>
-            </div>        
+            </div>
+            <div class="row"><div class="col-md-4">
+            <img src=<?php echo $img_src?> width="200px"></div>
+                <div class="col-md-8">
+                <h2><b><?php echo $name?></b></h2><br>
+                <h5><?php echo "Email : ".$email?></h5>
+                <h5><?php echo "Phone : ".$phone?></h5>
+                <h5><?php echo "DOB   : ".$dob?></h5>
+                <h5><?php echo "Gender: ".$sex?></h5>
+                </div>
+                </div>
+
+                <div class="row">
+                <br>
+                <div class="col-md-12">
+                <?php if(($resume_mode=="Add Resume")){
+                        echo ' <a href="create.php" class="btn btn-danger disabled btn-block btn-lg" >Resume not Uploaded</a><br>';
+                        }
+                        else{
+                            echo '<a href="'.$resume_src.'" class="btn btn-info  btn-block btn-lg" >Veiw Resume</a><br>';
+                        }?>
+                </div>
+                </div> 
+                <div class="row">
+                <div class="col-md-12">
+                <?php if(($resume_mode=="Add Resume")||($dp_mode=="Add Profile Pic")){
+                        echo '<div class= "alert alert-danger">
+                        You havent completed your profile!</div>';
+                        }
+                        else{
+                            echo '<div class= "alert alert-success">
+                            Your Profile is Complete.</div>';
+                        }?>
+                </div>
+                </div> 
         </div>
     </div>
 </body>
