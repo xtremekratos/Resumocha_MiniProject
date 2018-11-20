@@ -19,10 +19,10 @@ CREATE TABLE IF NOT EXISTS users(email varchar(20) primary key references login_
                                         dp varchar(10));
 
 CREATE TABLE IF NOT EXISTS images(email varchar(20) primary key references login_data(email),
-                                        image_path varchar(20));
+                                        image_path varchar(30));
 
 CREATE TABLE IF NOT EXISTS resumes(email varchar(20) primary key references login_data(email),
-                                        link varchar(20));
+                                        link varchar(30));
 
 insert into login_data values("jehad@gmail.com","panda","recruiter");
 insert into login_data values("jehadz@gmail.com","JED","user");
