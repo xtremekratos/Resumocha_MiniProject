@@ -35,12 +35,13 @@
                     require_once "config.php";
                     
                     // Attempt select query execution
-                    $sql = "SELECT * FROM users";
+                    $sql = "SELECT u.email,u.name,u.phone,u.dob,u.sex,r.link,i.image_path FROM users u,resumes r,images i where dp='true' and resume='true' and u.email=i.email and u.email=r.email";
                     if($result = $mysqli->query($sql)){
                         if($result->num_rows > 0){
                             echo "<table class='table table-bordered table-striped'>";
                                 echo "<thead>";
                                     echo "<tr>";
+                                    echo "<th>Profile Pic</th>";
                                         echo "<th>Email</th>";
                                         echo "<th>Name</th>";
                                         echo "<th>Phone</th>";
@@ -51,13 +52,14 @@
                                 echo "<tbody>";
                                 while($row = $result->fetch_array()){
                                     echo "<tr>";
+                                        echo "<td><img src='" . $row['image_path'] . "' width='75px'></td>";
                                         echo "<td>" . $row['email'] . "</td>";
                                         echo "<td>" . $row['name'] . "</td>";
                                         echo "<td>" . $row['phone'] . "</td>";
                                         echo "<td>" . $row['dob'] . "</td>";
                                         echo "<td>" . $row['sex'] . "</td>";
                                         echo "<td>";
-                                            echo "<a href='read.php?id=". $row['email'] ."' title='View Record' data-toggle='tooltip'>Veiw Resume</a>";
+                                            echo "<a href='". $row['link'] ."' target='_blank'>Veiw Resume</a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }

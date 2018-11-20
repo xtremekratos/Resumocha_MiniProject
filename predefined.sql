@@ -32,8 +32,6 @@ alter table users add resume varchar(20);
 alter table users add dp varchar(20);
 
 
-CREATE TRIGGER update_dp AFTER INSERT ON images
- FOR EACH ROW UPDATE users SET dp = updated;
+CREATE TRIGGER update_dp AFTER INSERT ON images FOR EACH ROW UPDATE users SET dp = 'true' where email=new.email;
 
- CREATE TRIGGER update_resume AFTER INSERT ON resumes
- FOR EACH ROW UPDATE users SET resume = updated;
+CREATE TRIGGER update_resume AFTER INSERT ON resumes FOR EACH ROW UPDATE users SET users.resume = 'true' where email=new.email;

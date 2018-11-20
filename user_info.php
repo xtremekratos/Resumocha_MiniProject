@@ -91,8 +91,8 @@ if(isset($_FILES['image'])){
                  header("Location:user_info.php?email=".$_GET["email"]);
                  exit();
                 
-      }
-    }
+      }else{echo "didnt exec";}
+    }else{echo "didnt bind";}
       }else if($dp_mode=="Update Profile Pic"){
         $sql = "update images set image_path=? where email=?";
         if($stmt = $mysqli->prepare($sql)){
@@ -108,9 +108,7 @@ if(isset($_FILES['image'])){
        }else{
           echo $dp_mode;
         }
-    }else{
-      echo $errors;
-    }
+    }else{echo implode($errors)."poop";}
  }
  if(isset($_FILES['resume'])){
     $errors= array();
@@ -168,7 +166,6 @@ if(isset($_FILES['image'])){
           echo $resume_mode;
         }
     }else{
-      echo $errors;
     }
  }
 ?>
