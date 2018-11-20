@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Validate position
     $input_position = trim($_POST["position"]);
-    if(empty($input_pass)){
+    if(empty($input_position)){
         $position_err = "Please enter your current position.";     
     } else{
         $position = $input_position;
@@ -71,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($stmt1 = $mysqli->prepare($sql_ld)){
             // Bind variables to the prepared statement as parameters
             $stmt1->bind_param("sss", $_POST['email'], $_POST['pass'], $param_acc);
-            
+
             if($stmt2 = $mysqli->prepare($sql_rec))
                 $stmt2->bind_param("ssss", $_POST['email'], $_POST['name'], $_POST['company'], $_POST['position']);
             
@@ -131,26 +131,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <input type="text" name="email" class="form-control" value="">
                                 <span class="help-block"><?php echo $email_err;?></span>
                             </div>
+
                             <div class="form-group <?php echo (!empty($pass_err)) ? 'has-error' : ''; ?>">
                                 <label>Password</label>
                                 <input type="password" name="pass" class="form-control" value="">
                                 <span class="help-block"><?php echo $pass_err;?></span>
                             </div>
+
                             <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
                                 <label>Name</label>
                                 <input type="text" name="name" class="form-control" value="">
                                 <span class="help-block"><?php echo $name_err;?></span>
                             </div>
+
                             <div class="form-group <?php echo (!empty($company_err)) ? 'has-error' : ''; ?>">
                                 <label>Company</label>
                                 <input type="text" name="company" class="form-control" value="">
                                 <span class="help-block"><?php echo $company_err;?></span>
                             </div>
+
                             <div class="form-group <?php echo (!empty($position_err)) ? 'has-error' : ''; ?>">
                                 <label>Position</label>
                                 <input type="text" name="position" class="form-control" value="">
                                 <span class="help-block"><?php echo $position_err; ?></span>
                             </div>
+
                             <!-- <a href="index.html" class="btn btn-success" >Register</a> -->
                             <!-- <div> -->
                             <input type="submit" class="btn btn-primary" value="Signin">

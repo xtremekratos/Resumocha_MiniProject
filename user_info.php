@@ -1,7 +1,6 @@
 <?php
 // Include config file
 require_once "config.php";
-
 $email="";
 $name="";
 $phone="";
@@ -53,9 +52,6 @@ if($stmt = $mysqli->prepare($sql)){
         }
     }
 }
-
-
-
 if(isset($_FILES['image'])){
     $errors= array();
     $file_name = $_FILES['image']['name'];
@@ -89,17 +85,12 @@ if(isset($_FILES['image'])){
           // Attempt to execute the prepared statement
           if($stmt->execute()){
             //Del this block after trigger
-            $sql = "update users set dp='true' where email=?";
-            if($stmt = $mysqli->prepare($sql)){
-               // Bind variables to the prepared statement as parameters
-               $stmt->bind_param("s", $email);
-                 $email = $_GET["email"];
-                 $stmt->execute();
+           
                  //below 3 lines to be added to main
                  move_uploaded_file($file_tmp,"img/".$file_name);
                  header("Location:user_info.php?email=".$_GET["email"]);
                  exit();
-                }
+                
       }
     }
       }else if($dp_mode=="Update Profile Pic"){
@@ -121,7 +112,6 @@ if(isset($_FILES['image'])){
       echo $errors;
     }
  }
-
  if(isset($_FILES['resume'])){
     $errors= array();
     $file_name = $_FILES['resume']['name'];
@@ -154,18 +144,12 @@ if(isset($_FILES['image'])){
                 
           // Attempt to execute the prepared statement
           if($stmt->execute()){
-            //Del this block after trigger
-            $sql = "update users set resume='true' where email=?";
-            if($stmt = $mysqli->prepare($sql)){
-               // Bind variables to the prepared statement as parameters
-               $stmt->bind_param("s", $email);
-                 $email = $_GET["email"];
-                 $stmt->execute();
+           
                  //below 3 lines to be added to main
                  move_uploaded_file($file_tmp,"resume/".$file_name);
                  header("Location:user_info.php?email=".$_GET["email"]);
                  exit();
-                }
+                
       }
     }
       }else if($resume_mode=="Update Resume"){
@@ -187,7 +171,6 @@ if(isset($_FILES['image'])){
       echo $errors;
     }
  }
-
 ?>
 
 
@@ -299,7 +282,6 @@ if(isset($_FILES['image'])){
                     }
                 
                     }}
-
                     if($resume_mode=="Add Resume"){
                         echo "";
                     }

@@ -1,7 +1,6 @@
 <?php
 // Include config file
 require_once "config.php";
-
 // Define variables and initialize with empty values
 $email = $pass =$name = $dob = $phone = $sex = "";
 $email_err = $pass_err = $name_err = $dob_err = $phone_err = $sex_err = "";
@@ -10,8 +9,6 @@ $type_of_alert="";
 $mode="";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-//isset($_POST["optradio"])&&isset($_POST["email"])&&(isset($_POST["pass"]))&&(isset($_POST["name"]))&&(isset($_POST["dob"]))&&(isset($_POST["phone"])) && !empty($_POST["email"]) || !empty($_POST["pass"])|| !empty($_POST["name"])|| !empty($_POST["phone"])|| !empty($_POST["dob"])
 
     // Validate email
     $input_email = trim($_POST["email"]);
@@ -30,7 +27,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $pass = $input_pass;
     }
-
     // Validate name
     $input_name = trim($_POST["name"]);
     if(empty($input_name)){
@@ -38,7 +34,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $name = $input_name;
     }
-
     // Validate dob
     $input_dob = trim($_POST["dob"]);
     if(empty($input_dob)){
@@ -46,7 +41,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $dob = $input_dob;
     }
-
     // Validate phone
     $input_phone = trim($_POST["phone"]);
     if(empty($input_phone)){
@@ -59,21 +53,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Check input errors before inserting in database
     if(empty($email_err) && empty($pass_err) && empty($name_err) && empty($dob_err) && empty($phone_err)){
-
         $sql = "INSERT into login_data (email, pass, account_type) values(?,?,?)";
-
         $sql2 = "INSERT into users (email, name, phone, dob, sex) values(?,?,?,?,?)";
-
         $user = "user";
-
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bind_param("sss", $_POST['email'], $_POST['pass'], $user);
             
             if($stmt2 = $mysqli->prepare($sql2)){
                 $stmt2->bind_param("sssss", $_POST['email'],$_POST['name'],$_POST['phone'],$_POST['dob'],$_POST['optradio']);
-
-
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                     if($stmt2->execute()){

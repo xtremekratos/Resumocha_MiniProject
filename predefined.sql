@@ -30,3 +30,10 @@ insert into recruiters values("jehad@gmail.com","Jehad F Luffy","DDX","Design He
 insert into users values("jehadz@gmail.com","Jehad Mohamed","+91 9113974687","1998-12-26","male");
 alter table users add resume varchar(20);
 alter table users add dp varchar(20);
+
+
+CREATE TRIGGER update_dp AFTER INSERT ON images
+ FOR EACH ROW UPDATE users SET dp = updated;
+
+ CREATE TRIGGER update_resume AFTER INSERT ON resumes
+ FOR EACH ROW UPDATE users SET resume = updated;
