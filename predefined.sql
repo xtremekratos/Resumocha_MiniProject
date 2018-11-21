@@ -35,3 +35,14 @@ alter table users add dp varchar(20);
 CREATE TRIGGER update_dp AFTER INSERT ON images FOR EACH ROW UPDATE users SET dp = 'true' where email=new.email;
 
 CREATE TRIGGER update_resume AFTER INSERT ON resumes FOR EACH ROW UPDATE users SET users.resume = 'true' where email=new.email;
+
+
+DELIMITER //
+CREATE PROCEDURE DeleteAll(IN input_email VARCHAR(20))
+ BEGIN
+ DELETE from users where email=input_email;
+ DELETE from images where email=input_email;
+ DELETE from resumes where email=input_email;
+ DELETE from login_data where email=input_email;
+ END //
+DELIMITER ;
