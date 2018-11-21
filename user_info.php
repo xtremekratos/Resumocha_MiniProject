@@ -54,8 +54,19 @@ if($stmt = $mysqli->prepare($sql)){
 }
 
 //to add the code here foryes button of the form
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    echo "you del";
+if(($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST['meh'])){
+    $sql = "call DeleteAll(?)";
+       if($stmt = $mysqli->prepare($sql)){
+          // Bind variables to the prepared statement as parameters
+          $stmt->bind_param("s", $email);
+            $email = $_GET["email"];
+          // Attempt to execute the prepared statement
+          if($stmt->execute()){
+                 header("Location:init.php");
+                 exit();
+                
+      }else{echo "didnt exec";}
+    }else{echo "didnt bind";}
 }
 
 
@@ -244,6 +255,7 @@ if(isset($_FILES['image'])){
                                     </div>
                                     <div class="modal-body" align="center" >
                                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+                                    <input type='text' name='meh' style="display:none"/>
                                     <input type = "submit" class="btn btn-danger btn-lg" style="margin-right: 15px;" value="Yes"/>
                                     <button type="button" class="btn btn-warning btn-lg" data-dismiss="modal">No</button></form>
                                     </div>
