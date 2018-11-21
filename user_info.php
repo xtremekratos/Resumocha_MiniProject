@@ -60,7 +60,7 @@ if(($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST['meh'])){
           // Bind variables to the prepared statement as parameters
           $stmt->bind_param("s", $email);
             $email = $_GET["email"];
-          // Attempt to execute the prepared statement
+          // Attempt to executethe prepared statement
           if($stmt->execute()){
                  header("Location:init.php");
                  exit();
