@@ -158,7 +158,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                             <!-- <a href="index.html" class="btn btn-success" >Register</a> -->
                             <!-- <div> -->
-                            <input type="submit" class="btn btn-primary" value="Signin">
+                            <input type="submit" class="btn btn-primary" value="Sign up">
                             <a href="init.php" class="btn btn-default">Cancel</a>
                         </form>
                                 <!-- Trigger the modal with a button -->

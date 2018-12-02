@@ -92,72 +92,73 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Resumocha</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <title>Resumocha</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-</head>
-<body>
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="page-header">
-                        <h2>User Sign Up</h2>
-                    </div>
-                    <p>Please enter your Details.</p>
-                    <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
-                        <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
-                            <label>Email</label>
-                            <input type="text" name="email" class="form-control" value="">
-                            <span class="help-block"><?php echo $email_err;?></span>
+        <!-- Bootstrap Date-Picker Plugin -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-header">
+                            <h2>User Sign Up</h2>
                         </div>
-                        <div class="form-group <?php echo (!empty($pass_err)) ? 'has-error' : ''; ?>">
-                            <label>Password</label>
-                            <input type="password" name="pass" class="form-control" value="">
-                            <span class="help-block"><?php echo $pass_err;?></span>
-                        </div>
-                        <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control" value="">
-                            <span class="help-block"><?php echo $name_err;?></span>
-                        </div>
-                        <div class="form-group <?php echo (!empty($phone_err)) ? 'has-error' : ''; ?>">
-                            <label>Phone</label>
-                            <input type="text" name="phone" class="form-control" value="">
-                            <span class="help-block"><?php echo $phone_err;?></span>
-                        </div>
-                        <div class="form-group <?php echo (!empty($dob_err)) ? 'has-error' : ''; ?>">
-                            <label>Date of Birth</label>
-                            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
-                            <input name="dob" type="text" class="form-control">
-                            <div class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
+                        <p>Please enter your Details.</p>
+                        <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+                            <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+                                <label>Email</label>
+                                <input type="text" name="email" class="form-control" value="">
+                                <span class="help-block"><?php echo $email_err;?></span>
                             </div>
-                            
-                        </div>
-                                <span class="help-block"><?php echo $dob_err;?></span>
-                        </div>
-                        <div class="form-group <?php echo (!empty($sex_err)) ? 'has-error' : ''; ?>">
-                            <label>Sex</label><br>
-                            <label class="radio-inline"><input type="radio" name="optradio" value="male">Male</label>
-<label class="radio-inline"><input type="radio" name="optradio" value="female">Female</label>
-<label class="radio-inline"><input type="radio" name="optradio" value="other">Other</label>
-                        </div>
-                        <input type="submit" class="btn btn-success" value="Sign in">
-                        <a href="init.php" class="btn btn-danger">Cancel</a>
-                        <div class="form-group <?php echo (!empty($res_err)) ? 'has-error' : ''; ?>">
-                        <br>
-                    </form>
-                </div>
-                
-            </div>        
+                            <div class="form-group <?php echo (!empty($pass_err)) ? 'has-error' : ''; ?>">
+                                <label>Password</label>
+                                <input type="password" name="pass" class="form-control" value="">
+                                <span class="help-block"><?php echo $pass_err;?></span>
+                            </div>
+                            <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
+                                <label>Name</label>
+                                <input type="text" name="name" class="form-control" value="">
+                                <span class="help-block"><?php echo $name_err;?></span>
+                            </div>
+                            <div class="form-group <?php echo (!empty($phone_err)) ? 'has-error' : ''; ?>">
+                                <label>Phone</label>
+                                <input type="text" name="phone" class="form-control" value="">
+                                <span class="help-block"><?php echo $phone_err;?></span>
+                            </div>
+                            <div class="form-group <?php echo (!empty($dob_err)) ? 'has-error' : ''; ?>">
+                                <label>Date of Birth</label>
+                                <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+                                <input name="dob" type="text" class="form-control">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                                
+                            </div>
+                                    <span class="help-block"><?php echo $dob_err;?></span>
+                            </div>
+                            <div class="form-group <?php echo (!empty($sex_err)) ? 'has-error' : ''; ?>">
+                                <label>Sex</label><br>
+                                <label class="radio-inline"><input type="radio" name="optradio" value="male">Male</label>
+                                <label class="radio-inline"><input type="radio" name="optradio" value="female">Female</label>
+                                <label class="radio-inline"><input type="radio" name="optradio" value="other">Other</label>
+                            </div>
+                            <input type="submit" class="btn btn-success" value="Sign up">
+                            <a href="init.php" class="btn btn-danger">Cancel</a>
+                            <div class="form-group <?php echo (!empty($res_err)) ? 'has-error' : ''; ?>">
+                            <br>
+                        </form>
+                    </div>
+                    
+                </div>        
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>

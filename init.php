@@ -24,7 +24,7 @@ if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) 
     // Validate pass 
     $input_pass = trim($_POST["pass"]);
     if(empty($input_pass)){
-        $name_err = "Please enter an pass.";     
+        $name_err = "Please enter a pass.";     
     } else{
         $pass = $input_pass;
     }

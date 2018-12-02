@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS users(email varchar(20) primary key references login_
                                         phone varchar(20),
                                         dob date,
                                         sex varchar(10),
-                                        resume varchar(10),
+                                        resume varchar(20),
                                         dp varchar(10));
 
 CREATE TABLE IF NOT EXISTS images(email varchar(20) primary key references login_data(email),
