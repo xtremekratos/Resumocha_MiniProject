@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS resumocha;
 USE resumocha;
 
-CREATE TABLE IF NOT EXISTS login_data(email varchar(20) primary key,
+CREATE TABLE IF NOT EXISTS login_data(email varchar(30) primary key,
                                         pass varchar(20) not null,
                                         account_type varchar(20));
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS resumes(     resid integer primary key AUTO_INCREMENT
 
 CREATE TRIGGER update_dp AFTER INSERT ON images FOR EACH ROW UPDATE users SET dp = 'true' where uid=new.uid;
 
-CREATE TRIGGER update_resume AFTER INSERT ON resumes FOR EACH ROW UPDATE users SET users.resume = 'true' where uid=new.email;
+CREATE TRIGGER update_resume AFTER INSERT ON resumes FOR EACH ROW UPDATE users SET users.resume = 'true' where uid=new.uid;
 
 
 DELIMITER //
