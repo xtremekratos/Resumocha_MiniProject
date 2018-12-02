@@ -35,7 +35,7 @@
                     require_once "config.php";
                     
                     // Attempt select query execution
-                    $sql = "SELECT u.email,u.name,u.phone,u.dob,u.sex,r.link,i.image_path FROM users u,resumes r,images i where dp='true' and resume='true' and u.email=i.email and u.email=r.email";
+                    $sql = "SELECT u.email,u.name,u.phone,u.dob,u.sex,r.link,i.image_path FROM users u,resumes r,images i where dp='true' and resume='true' and u.uid=i.uid and u.uid=r.uid";
                     if($result = $mysqli->query($sql)){
                         if($result->num_rows > 0){
                             echo "<table class='table table-bordered table-striped'>";
