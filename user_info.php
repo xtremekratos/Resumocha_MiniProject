@@ -10,6 +10,7 @@ $resume ="";
 $dp = "";
 $resume_mode ="";
 $dp_mode = "";
+$uid="";
 $resume_src="";
 if(isset($_GET["email"])){
     $email = $_GET["email"]; 
@@ -34,6 +35,7 @@ if($stmt = $mysqli->prepare($sql)){
             $name =$row["name"];
             $phone =$row["phone"];
             $sex =$row["sex"];
+            $uid =$row["uid"];
             $dob =$row["dob"];
             $resume =$row["resume"]."";
             $dp =$row["dp"]."";
@@ -55,11 +57,12 @@ if($stmt = $mysqli->prepare($sql)){
 
 //to add the code here foryes button of the form
 if(($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST['meh'])){
-    $sql = "call DeleteAll(?)";
+    $sql = "call DeleteAll(?,?)";
        if($stmt = $mysqli->prepare($sql)){
           // Bind variables to the prepared statement as parameters
-          $stmt->bind_param("s", $email);
+          $stmt->bind_param("si", $email,$_uid);
             $email = $_GET["email"];
+            $_uid =$uid;
           // Attempt to executethe prepared statement
           if($stmt->execute()){
                  header("Location:init.php");
@@ -93,13 +96,12 @@ if(isset($_FILES['image'])){
     if(empty($errors)==true) {
        $img_src="img/".$file_name;
        if($dp_mode=="Add Profile Pic"){
-       $sql = "insert into images values(?,?)";
+       $sql = "insert into images(uid,image_path) values(?,?)";
        if($stmt = $mysqli->prepare($sql)){
           // Bind variables to the prepared statement as parameters
-          $stmt->bind_param("ss", $email,$src);
-            $email = $_GET["email"];
+          $stmt->bind_param("ss", $_uid,$src);
+            $_uid = $uid;
             $src = $img_src;
-          
                 
           // Attempt to execute the prepared statement
           if($stmt->execute()){
@@ -113,11 +115,11 @@ if(isset($_FILES['image'])){
       }else{echo "didnt exec";}
     }else{echo "didnt bind";}
       }else if($dp_mode=="Update Profile Pic"){
-        $sql = "update images set image_path=? where email=?";
+        $sql = "update images set image_path=? where uid=?";
         if($stmt = $mysqli->prepare($sql)){
            // Bind variables to the prepared statement as parameters
-           $stmt->bind_param("ss",$src,$email);
-             $email = $_GET["email"];
+           $stmt->bind_param("ss",$src,$_uid);
+             $_uid = $uid;
              $src = $img_src;
              if($stmt->execute()){
             move_uploaded_file($file_tmp,"img/".$file_name);
@@ -151,11 +153,11 @@ if(isset($_FILES['image'])){
     if(empty($errors)==true) {
        $resume_src="resume/".$file_name;
        if($resume_mode=="Add Resume"){
-       $sql = "insert into resumes values(?,?)";
+       $sql = "insert into resumes(uid,link) values(?,?)";
        if($stmt = $mysqli->prepare($sql)){
           // Bind variables to the prepared statement as parameters
-          $stmt->bind_param("ss", $email,$src);
-            $email = $_GET["email"];
+          $stmt->bind_param("ss", $_uid,$src);
+            $_uid = $uid;
             $src = $resume_src;
           
                 
@@ -170,11 +172,11 @@ if(isset($_FILES['image'])){
       }
     }
       }else if($resume_mode=="Update Resume"){
-        $sql = "update resumes set link=? where email=?";
+        $sql = "update resumes set link=? where uid=?";
         if($stmt = $mysqli->prepare($sql)){
            // Bind variables to the prepared statement as parameters
-           $stmt->bind_param("ss",$src,$email);
-             $email = $_GET["email"];
+           $stmt->bind_param("ss",$src,$_uid);
+             $_uid = $uid;
              $src = $resume_src;
              if($stmt->execute()){
             move_uploaded_file($file_tmp,"resume/".$file_name);
@@ -290,11 +292,12 @@ if(isset($_FILES['image'])){
                     }
                     else{
                     // Attempt select query execution
-                    $sql = "select * from images WHERE email=?";
+                    $sql = "select * from images WHERE uid=?";
  
                     if($stmt = $mysqli->prepare($sql)){
                         // Bind variables to the prepared statement as parameters
-                        $stmt->bind_param("s", $_GET['email']);
+                        $stmt->bind_param("s", $_uid);
+                        $_uid=$uid;
                               
                         // Attempt to execute the prepared statement
                         if($stmt->execute()){
@@ -320,11 +323,12 @@ if(isset($_FILES['image'])){
                     }
                     else{
                     // Attempt select query execution
-                    $sql = "select * from resumes WHERE email=?";
+                    $sql = "select * from resumes WHERE uid=?";
  
                     if($stmt = $mysqli->prepare($sql)){
                         // Bind variables to the prepared statement as parameters
-                        $stmt->bind_param("s", $_GET['email']);
+                        $stmt->bind_param("s", $_uid);
+                        $_uid =$uid;
                               
                         // Attempt to execute the prepared statement
                         if($stmt->execute()){
