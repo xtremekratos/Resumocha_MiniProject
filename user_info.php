@@ -379,6 +379,15 @@ if (isset($_FILES['resume'])) {
 
                 <div class="row">
                     <br>
+                    <div class="col-md-4">
+                        <!-- <button type="submit" formaction="\resume-generator\index.html" class="btn btn-primary btn-block">Make Resume</button> -->
+                        <a href="resume-generator\index.html" class=" btn btn-primary btn-block">Make Resume</a>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <br>
                     <div class="col-md-12">
                         <?php if (($resume_mode == "Add Resume")) {
                             echo ' <a href="create.php" class="btn btn-danger disabled btn-block btn-lg" >Resume not Uploaded</a><br>';
