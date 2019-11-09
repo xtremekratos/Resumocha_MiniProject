@@ -108,7 +108,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Resumocha</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/shards.min.css?v=3.0.0">
+    <link rel="stylesheet" href="css/shards-demo.min.css?v=3.0.0">
     </head>
     <style type="text/css">
             .wrapper{
@@ -116,7 +119,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 margin: 0 auto;
             }
         </style>
-    <body>
+<body background="img/bg.png">
+<div class="card col-lg-6 col-md-6 col-sm-12" style = "margin-top:8%">
+    <div class="card-body">
         <div class="wrapper">
             <div class="container-fluid">
                 <div class="row">
@@ -158,9 +163,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                             <!-- <a href="index.html" class="btn btn-success" >Register</a> -->
                             <!-- <div> -->
-                            <input type="submit" class="btn btn-primary" value="Sign up">
-                            <a href="init.php" class="btn btn-default">Cancel</a>
+                            <input type="submit" class="btn btn-primary btn-lg btn-pill" value="Sign up">
+                            <a href="init.php" class="btn btn-default btn-lg btn-pill">Cancel</a>
                         </form>
+                        <br><br>
                                 <!-- Trigger the modal with a button -->
                                 <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Register</button> -->
 
@@ -190,6 +196,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>        
             </div>
         </div>
+        </div>
+        </div>
+
 
     </body>
 </html>

@@ -143,11 +143,11 @@ if ((isset($_POST["email"])) && (isset($_POST["pass"])) && !empty($_POST["email"
                                                 <h4 class="modal-title">Register as</h4>
                                             </div>
                                             <div class="modal-body" align="center">
-                                                <button onclick="location.href='RecruiterSignup.php'" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">Recruiter</button>
-                                                <button onclick="location.href='UserSignUp.php'" type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">User</button>
+                                                <button onclick="location.href='RecruiterSignup.php'" type="button" class="btn btn-danger btn-lg btn-pill" data-toggle="modal" data-target="#myModal">Recruiter</button>
+                                                <button onclick="location.href='UserSignUp.php'" type="button" class="btn btn-warning btn-lg btn-pill" data-toggle="modal" data-target="#myModal">User</button>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-default btn-pill" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
