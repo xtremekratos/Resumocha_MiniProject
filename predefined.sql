@@ -48,7 +48,13 @@ CREATE PROCEDURE DeleteAll(IN input_email VARCHAR(20),IN input_uid integer)
 DELIMITER ;
 
 
+<<<<<<< HEAD
 /*Resume generator*/
+=======
+
+/*Resume generator*/
+
+>>>>>>> 9302a5ba6414db4f2f71b1a21fbdd89d6a057e05
 CREATE TABLE login_data(email varchar(30) primary key,
                         pass varchar(20) not null);
 
@@ -92,4 +98,8 @@ CREATE TABLE achievement(
     uid integer references user_info(uid),
     title VARCHAR(30),
     desc VARCHAR(200)
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> 9302a5ba6414db4f2f71b1a21fbdd89d6a057e05
