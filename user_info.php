@@ -247,20 +247,20 @@ if (isset($_FILES['resume'])) {
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Your Details</h2>
-                        <button type="button" class="btn btn-danger btn-lg pull-right" data-toggle="modal" data-target="#myModalDelete"> <?php echo "Delete Account" ?></button>
-                        <button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target="#myModalResume" style="margin-right: 15px;"> <?php echo $resume_mode ?></button>
-                        <button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target="#myModalPic" style="margin-right: 15px;"> <?php echo $dp_mode ?></button>
+                        <button type="button" class="btn btn-danger btn-lg pull-right btn-pill" data-toggle="modal" data-target="#myModalDelete"> <?php echo "Delete Account" ?></button>
+                        <button type="button" class="btn btn-success btn-lg pull-right btn-pill" data-toggle="modal" data-target="#myModalResume" style="margin-right: 15px;"> <?php echo $resume_mode ?></button>
+                        <button type="button" class="btn btn-success btn-lg pull-right btn-pill" data-toggle="modal" data-target="#myModalPic" style="margin-right: 15px;"> <?php echo $dp_mode ?></button>
                         <div class="modal fade" id="myModalResume" role="dialog">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <button type="button" class="close btn btn-lg" data-dismiss="modal">&times;</button>
+                                        <button type="button" class="close btn btn-lg btn-pill" data-dismiss="modal">&times;</button>
                                         <h4 class="modal-title">Upload your Resume</h4>
                                     </div>
                                     <div class="modal-body" align="center">
                                         <form action="" method="POST" enctype="multipart/form-data">
-                                            <input type="file" name="resume" class="btn btn-info btn-lg" /><br>
-                                            <input type="submit" class="btn btn-success btn-lg" /></form>
+                                            <input type="file" name="resume" class="btn btn-info btn-lg btn-pill" /><br>
+                                            <input type="submit" class="btn btn-success btn-lg btn-pill" /></form>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
@@ -279,8 +279,8 @@ if (isset($_FILES['resume'])) {
                                     <div class="modal-body" align="center">
                                         <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                                             <input type='text' name='meh' style="display:none" />
-                                            <input type="submit" class="btn btn-danger btn-lg" style="margin-right: 15px;" value="Yes" />
-                                            <button type="button" class="btn btn-warning btn-lg" data-dismiss="modal">No</button></form>
+                                            <input type="submit" class="btn btn-danger btn-lg btn-pill" style="margin-right: 15px;" value="Yes" />
+                                            <button type="button" class="btn btn-warning btn-lg btn-pill" data-dismiss="modal">No</button></form>
                                     </div>
                                 </div>
                             </div>
@@ -295,11 +295,11 @@ if (isset($_FILES['resume'])) {
                                     </div>
                                     <div class="modal-body" align="center">
                                         <form action="" method="POST" enctype="multipart/form-data">
-                                            <input type="file" name="image" class="btn btn-info" /><br>
-                                            <input type="submit" class="btn btn-success" /></form>
+                                            <input type="file" name="image" class="btn btn-info btn-pill" /><br>
+                                            <input type="submit" class="btn btn-success btn-pill" /></form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-default btn-pill" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -388,7 +388,7 @@ if (isset($_FILES['resume'])) {
                     <br>
                     <div class="col-md-4">
                         <!-- <button type="submit" formaction="\resume-generator\index.html" class="btn btn-primary btn-block">Make Resume</button> -->
-                        <a href="resume-generator\index.html" class=" btn btn-primary btn-block btn-lg">Make Resume</a>
+                        <a href="resume-generator\index.html" class=" btn btn-primary btn-block btn-lg btn-pill">Make Resume</a>
                     </div>
                 </div>
 
@@ -397,9 +397,9 @@ if (isset($_FILES['resume'])) {
                     <br>
                     <div class="col-md-12">
                         <?php if (($resume_mode == "Add Resume")) {
-                            echo ' <a href="create.php" class="btn btn-danger disabled btn-block btn-lg" >Resume not Uploaded</a><br>';
+                            echo ' <a href="create.php" class="btn btn-danger disabled btn-block btn-lg btn-pill" >Resume not Uploaded</a><br>';
                         } else {
-                            echo '<a href="' . $resume_src . '" class="btn btn-info  btn-block btn-lg"  target="_blank" >Veiw Resume</a><br>';
+                            echo '<a href="' . $resume_src . '" class="btn btn-info  btn-block btn-lg btn-pill"  target="_blank" >Veiw Resume</a><br>';
                         } ?>
                     </div>
                 </div>
