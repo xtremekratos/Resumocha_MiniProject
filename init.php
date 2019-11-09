@@ -9,7 +9,7 @@ $res_err="";
 $type_of_alert="";
 $mode="";
 // Processing form data when form is submitted, even checks if data available in database
-if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) || !empty($_POST["pass"])){
+if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) && !empty($_POST["pass"])){
 
     // Validate email
     $input_email = trim($_POST["email"]);
@@ -81,7 +81,9 @@ if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) 
     
     // Close connection
     $mysqli->close();
-} 
+}
+// else 
+//     echo "<script> alert('Enter Credentials')</script>";
 ?>
  
 <!DOCTYPE html>
@@ -108,7 +110,7 @@ if((isset($_POST["email"]))&&(isset($_POST["pass"])) && !empty($_POST["email"]) 
                         <h2>Login</h2>
                     </div>
                     <p>Please enter your credentials.</p>
-                    <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+                    <form action="<?php echo basename($_SERVER['REQUEST_URI']); ?>" method="post">
                         <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
                             <label>Email</label>
                             <input type="text" name="email" class="form-control" value="">
