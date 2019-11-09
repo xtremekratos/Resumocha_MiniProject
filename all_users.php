@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/shards.min.css?v=3.0.0">
+    <link rel="stylesheet" href="css/shards-demo.min.css?v=3.0.0">
     <style type="text/css">
         .wrapper{
             width: 650px;
@@ -22,7 +26,9 @@
         });
     </script>
 </head>
-<body>
+<body background="img/bg.png">
+<div class="card col-lg-6 col-md-6 col-sm-12" style = "margin-top:9%">
+    <div class="card-body">
     <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
@@ -81,5 +87,6 @@
             </div>        
         </div>
     </div>
+    </div></div>
 </body>
 </html
