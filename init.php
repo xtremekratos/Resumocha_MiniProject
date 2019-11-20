@@ -90,6 +90,7 @@ if ((isset($_POST["email"])) && (isset($_POST["pass"])) && !empty($_POST["email"
 
 <head>
     <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Resumocha</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
@@ -97,6 +98,7 @@ if ((isset($_POST["email"])) && (isset($_POST["pass"])) && !empty($_POST["email"
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/shards.min.css?v=3.0.0">
     <link rel="stylesheet" href="css/shards-demo.min.css?v=3.0.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <style type="text/css">
     .wrapper {
@@ -105,75 +107,93 @@ if ((isset($_POST["email"])) && (isset($_POST["pass"])) && !empty($_POST["email"
     }
 </style>
 
-<body background="img/bg.png">
-    
-    <div class="card col-lg-5 col-md-6 col-sm-12" style = "margin-top:12%">
-    <div class="card-body">
-        <div class="wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="page-header">
-                            <h2>Login</h2>
-                        </div>
-                        <p>Please enter your credentials.</p>
-                        <form action="<?php echo basename($_SERVER['REQUEST_URI']); ?>" method="post">
-                            <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
-                                <label>Email</label>
-                                <input type="text" name="email" class="form-control" value="">
-                                <span class="help-block"><?php echo $email_err; ?></span>
-                            </div>
-                            <div class="form-group <?php echo (!empty($pass_err)) ? 'has-error' : ''; ?>">
-                                <label>Password</label>
-                                <input type="password" name="pass" class="form-control" value="">
-                                <span class="help-block"><?php echo $pass_err; ?></span>
-                            </div>
-                            <!-- <a href="index.html" class="btn btn-success" >Register</a> -->
-                            <div class="">
-                                <input type="submit" class="btn btn-primary btn-lg btn-pill" value="Login">
-                                <!-- Trigger the modal with a button -->
-                                <button type="button" class="btn btn-success btn-lg btn-pill" data-toggle="modal" data-target="#myModal">Register</button>
+<body background="img/bg.png" style="display: flex; align-items: center; height: -webkit-fill-available;justify-content: center;">
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="myModal" role="dialog">
-                                    <div class="modal-dialog modal-sm">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Register as</h4>
-                                            </div>
-                                            <div class="modal-body" align="center">
-                                                <button onclick="location.href='RecruiterSignup.php'" type="button" class="btn btn-danger btn-lg btn-pill" data-toggle="modal" data-target="#myModal">Recruiter</button>
-                                                <button onclick="location.href='UserSignUp.php'" type="button" class="btn btn-warning btn-lg btn-pill" data-toggle="modal" data-target="#myModal">User</button>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default btn-pill" data-dismiss="modal">Close</button>
+    <div class="card col-lg-5 col-md-6 col-sm-12">
+        <div class="card-body">
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="page-header">
+                                <h2>Login</h2>
+                            </div>
+                            <h5>Please enter your credentials.</h5><br>
+                            <form action="<?php echo basename($_SERVER['REQUEST_URI']); ?>" method="post">
+
+                                <div class="form-group col-md-8 <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+                                    <div class="input-group input-group-seamless">
+                                        <span class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                        </span>
+                                        <input type="text" class="form-control" name="email" id="form1-username" placeholder="Username">
+                                    </div>
+                                    <span class="help-block"><?php echo $email_err; ?></span>
+                                </div>
+
+
+                                <div class="form-group col-md-8 <?php echo (!empty($pass_err)) ? 'has-error' : ''; ?>">
+                                    <!-- <label>Password</label> -->
+                                    <div class="input-group input-group-seamless">
+                                        <input type="password" class="form-control" id="form2-password" placeholder="Password" name="pass">
+                                        <span class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-lock"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <span class="help-block"><?php echo $pass_err; ?></span>
+                                </div>
+
+                                <!-- <a href="index.html" class="btn btn-success" >Register</a> -->
+                                <div class="col-md-5">
+                                    <input type="submit" class="btn btn-primary btn-lg btn-pill" value="Login">
+                                    <!-- Trigger the modal with a button -->
+                                    <button type="button" class="btn btn-success btn-lg btn-pill" data-toggle="modal" data-target="#myModal">Register</button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" role="dialog">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Register as</h4>
+                                                </div>
+                                                <div class="modal-body" align="center">
+                                                    <button onclick="location.href='RecruiterSignup.php'" type="button" class="btn btn-danger btn-lg btn-pill" data-toggle="modal" data-target="#myModal">Recruiter</button>
+                                                    <button onclick="location.href='UserSignUp.php'" type="button" class="btn btn-warning btn-lg btn-pill" data-toggle="modal" data-target="#myModal">User</button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default btn-pill" data-dismiss="modal">Close</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group <?php echo (!empty($res_err)) ? 'has-error' : ''; ?>">
-                                <br>
-                                <?php if ($res_err == "Logged In.") {
-                                    echo '<div class= "alert alert-success">
+                                <div class="form-group col-md-8 <?php echo (!empty($res_err)) ? 'has-error' : ''; ?>">
+                                    <br>
+                                    <?php if ($res_err == "Logged In.") {
+                                        echo '<div class= "alert alert-success">
                         Logged In.</div>';
-                                } else if (($res_err == "Email or Password is invalid")) {
-                                    echo '<div class= "alert alert-danger">
+                                    } else if (($res_err == "Email or Password is invalid")) {
+                                        echo '<div class= "alert alert-danger">
                             Email or Password is invalid.</div>';
-                                } else if (($res_err == "You havent registered! Or Email is invalid")) {
-                                    echo '<div class= "alert alert-danger">
+                                    } else if (($res_err == "You havent registered! Or Email is invalid")) {
+                                        echo '<div class= "alert alert-danger">
                             You havent registered! Or Email is invalid.</div>';
-                                }
-                                ?>
-                        </form>
-                    </div>
+                                    }
+                                    ?>
+                            </form>
+                        </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div></div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
